@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Cotizaci&oacute;n cortadores para la industria</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</head>
+	<body>
+		<!-- 1 -->
+		<div class="container-fluid">
+			<div class="jumbotron jumbotron-fluid">
+				<h1 class="display-4" style="font-size:2rem">Datos del material</h1>
+				<hr class="pb-4">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<form>
+								<div class="form-row">
+									<div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 mb-3">
+										<label for="productTxt">Producto</label>
+										<input type="text" class="form-control" id="productTxt" placeholder="Nombre del producto" required>
+									</div>
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 mb-3">
+										<label for="priceTxt">Precio unitario</label>
+										<input type="text" class="form-control" id="priceTxt" placeholder="Cu&aacute;nto cuesta" required>
+									</div>
+								</div>
+								<button class="btn btn-success" type="submit" onclick="addRow(event)">+ Agregar</button>
+							</form>
+						</div>
+					</div>
+					<div class="row justify-content-end">
+						<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+							<button class="btn btn-primary" onclick="descargar()">Crear cotizaci&oacute;n</button>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid" id="content">
+						Cotizaci&oacute;n
+						<hr>
+						<div id="row-to-append">
+						</div>
+					</div>
+					<div id="editor"></div>
+			</div>
+		</div>
+		
+
+		<!-- Modal -->
+		<div class="modal fade" id="docNameModal" tabindex="-1" role="dialog" aria-labelledby="docNameModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title">Nombre del archivo</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+						<div class="row">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<input class="form-control" type="text" name="company-txt" id="company-txt" placeholder="Nombre de la empresa">
+								</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				  <button type="button" id="confirm-btn" class="btn btn-primary" data-dismiss="modal" onclick="giveFileName()">Confirmar</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+		<script src="controller.js"></script>
+	</body>
+</html>
