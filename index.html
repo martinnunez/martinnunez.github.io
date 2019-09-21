@@ -1,83 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Cotizaci&oacute;n cortadores para la industria</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	</head>
-	<body>
-		<!-- 1 -->
-		<div class="container-fluid">
-			<div class="jumbotron jumbotron-fluid">
-				<h1 class="display-4" style="font-size:2rem">Datos del material</h1>
-				<hr class="pb-4">
-				<div class="container-fluid">
-					<div class="row pb-3">
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							<form>
-								<div class="form-row">
-									<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mb-3">
-										<label for="productTxt">Producto</label>
-										<input type="text" class="form-control" id="productTxt" placeholder="Nombre del producto" required>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
-										<label for="priceTxt">Precio unitario</label>
-										<input type="text" class="form-control" id="priceTxt" placeholder="Cu&aacute;nto cuesta" required>
-									</div>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Cotizaci&oacute;n cortadores para la industria</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+		.input-group-text {
+			background-color: #fff;
+			color: black;
+			border-right: none;
+		}
+		#priceTxt {
+			border-left: none;
+		}
+		.alert-dismissible{
+			padding-right: 0;
+			padding-top: 1rem;
+		}
+		.alert-dismissible .close{
+			padding: 0.15rem 0.35rem;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 1 -->
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<h1 class="display-4" style="font-size:2rem;padding-left: 8px">Datos del material</h1>
+			<hr class="pb-4">
+			<div class="container-fluid">
+				<div class="row pb-3">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<form>
+							<div class="form-row">
+								<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mb-3">
+									<!-- <label for="productTxt">Producto</label> -->
+									<input type="text" class="form-control" id="productTxt"
+										placeholder="Nombre del producto" required>
 								</div>
-								<button class="btn btn-success" type="submit" onclick="addRow(event)">+ Agregar</button>
-							</form>
-						</div>
+								<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon1">$</span>
+										</div>
+										<!-- <label for="priceTxt">Producto</label> -->
+										<input type="tel" class="form-control" id="priceTxt"
+											placeholder="Cu&aacute;nto cuesta" onkeydown="onlyNumbers(event)" required>
+									</div>
+									<!-- <label for="priceTxt">Producto</label>
+									<input type="tel" class="form-control" id="priceTxt"
+											placeholder="Cu&aacute;nto cuesta" onkeydown="onlyNumbers(event)" required> -->
+								</div>
+							</div>
+							<button class="btn btn-success float-right d-lg-none btn-block" type="submit"
+								onclick="addRow(event)">+ Agregar</button>
+							<button class="btn btn-success float-right d-none d-lg-block float-right" type="submit"
+								onclick="addRow(event)">+ Agregar</button>
+						</form>
 					</div>
-					<div class="row justify-content-end">
-						<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-							<button class="btn btn-primary" onclick="descargar()">Crear cotizaci&oacute;n</button>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-xl-7 col-12">
+						<div class="collapse" id="alert-error">
+							<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+								<strong class="d-block">Hubo un problema!</strong>
+								<span class="d-block">Debes ingresar el producto y el precio.</span>
+								<button type="button" class="close" aria-expanded="true" aria-controls="collapseExample" aria-label="Cerrar" onclick="closeAlert()">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="container-fluid py-3" id="content">
-						Cotizaci&oacute;n
-						<hr>
-						<div id="row-to-append">
-						</div>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<button class="btn btn-primary d-lg-none btn-block" onclick="descargar()">Crear
+							cotizaci&oacute;n</button>
+						<button class="btn btn-primary d-none d-lg-block float-right" onclick="descargar()">Crear
+							cotizaci&oacute;n</button>
 					</div>
-					<div id="editor"></div>
+				</div>
 			</div>
+			<div class="container-fluid py-3" id="content">
+				Cotizaci&oacute;n
+				<hr>
+				<div id="row-to-append">
+				</div>
+			</div>
+			<div id="editor"></div>
 		</div>
-		
+	</div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="docNameModal" tabindex="-1" role="dialog" aria-labelledby="docNameModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-			  <div class="modal-content">
+
+	<!-- Modal -->
+	<div class="modal fade" id="docNameModal" tabindex="-1" role="dialog" aria-labelledby="docNameModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
 				<div class="modal-header">
-				  <h5 class="modal-title">Nombre del archivo</h5>
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				  </button>
+					<h5 class="modal-title">Factura para: </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
 				<div class="modal-body">
-						<div class="row">
-								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<input class="form-control" type="text" name="company-txt" id="company-txt" placeholder="Nombre de la empresa">
-								</div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<input class="form-control" type="text" name="company-txt" id="company-txt"
+								placeholder="Nombre de la empresa">
 						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
-				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				  <button type="button" id="confirm-btn" class="btn btn-primary" data-dismiss="modal" onclick="giveFileName()">Confirmar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" id="confirm-btn" class="btn btn-primary" data-dismiss="modal"
+						onclick="giveFileName()">Confirmar</button>
 				</div>
-			  </div>
 			</div>
-		  </div>
+		</div>
+	</div>
 
 
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
-		<script src="controller.js"></script>
-	</body>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+	<script src="controller.js"></script>
+</body>
+
 </html>
