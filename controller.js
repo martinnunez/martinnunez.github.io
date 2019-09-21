@@ -82,6 +82,7 @@ function addRow(e) {
     var product = document.getElementById('productTxt').value;
     var price = document.getElementById('priceTxt').value;
     if (product.trim().length > 0 && price.trim().length > 0) {
+        $('#btn-download').removeClass('d-none');
         const classesRow = ['row', 'justify-content-center', 'py-2'];
         const classesProduct = ['col-xl-7', 'col-lg-7', 'col-md-7', 'col-sm-7', 'col-7'];
         const classesPrice = ['col-xl-5', 'col-lg-5', 'col-md-5', 'col-sm-5', 'col-5'];

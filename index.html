@@ -38,19 +38,19 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<form>
 							<div class="form-row">
-								<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mb-3">
+								<div class="col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12 mb-3">
 									<!-- <label for="productTxt">Producto</label> -->
 									<input type="text" class="form-control" id="productTxt"
 										placeholder="Nombre del producto" required>
 								</div>
-								<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
+								<div class="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-12 mb-3">
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">$</span>
 										</div>
 										<!-- <label for="priceTxt">Producto</label> -->
 										<input type="tel" class="form-control" id="priceTxt"
-											placeholder="Cu&aacute;nto cuesta" onkeydown="onlyNumbers(event)" required>
+											placeholder="Cu&aacute;nto cuesta" required>
 									</div>
 									<!-- <label for="priceTxt">Producto</label>
 									<input type="tel" class="form-control" id="priceTxt"
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row d-none" id="btn-download">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<button class="btn btn-primary d-lg-none btn-block" onclick="descargar()">Crear
 							cotizaci&oacute;n</button>
