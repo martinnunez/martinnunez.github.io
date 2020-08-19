@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function login(e){
     e.preventDefault();
-    if($('#user').val() == 'martin' && $('#password').val() == 'unafacil'){
+    if($('#user').val().toLowerCase() == 'martin' && $('#password').val().toLowerCase() == 'unafacil'){
         $("#root").removeClass('d-none');
         $('#loginModal').modal('hide')
     } else {
@@ -155,6 +155,16 @@ function addRow(e) {
         let product = document.getElementById('productTxt').value;
         let price = document.getElementById('priceTxt').value;
 
+        // Check if has decimal to append .00
+        if(price - Math.floor(price) == 0){
+            if(price.includes('.') || price.includes(',')){
+                price = price+'00';
+            } else {
+                price = price+'.00';
+            }
+            
+        }
+
         colProduct.innerText = product;
         colPrice.innerText = price;
 
@@ -169,6 +179,7 @@ function addRow(e) {
 
         product = '';
         price = '';
+        $('#alert-error').collapse('hide');
     } else {
         if (product.trim().length == 0) {
             $('#alert-error').collapse('show');
